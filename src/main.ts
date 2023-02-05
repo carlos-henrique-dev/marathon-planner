@@ -1,5 +1,4 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from "vue";
+import { MarathonPlanner } from "./modules";
 
-createApp(App).mount('#app')
+createApp(MarathonPlanner).mount("#app");
