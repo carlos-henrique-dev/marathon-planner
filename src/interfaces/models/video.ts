@@ -3,7 +3,7 @@ export interface IVideo {
   title: string;
   description: string;
   thumbnail: string;
-  duration: string | null;
+  duration: number | null;
 }
 
 export interface IApiVideoSearchResponse {

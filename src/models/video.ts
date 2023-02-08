@@ -5,7 +5,7 @@ export class Video implements IVideo {
   title: string;
   description: string;
   thumbnail: string;
-  duration: string | null;
+  duration: number | null;
 
   constructor({
     id,
@@ -18,7 +18,7 @@ export class Video implements IVideo {
     title: string;
     description: string;
     thumbnail: string;
-    duration: string | null;
+    duration: number | null;
   }) {
     this.id = id;
     this.title = title;

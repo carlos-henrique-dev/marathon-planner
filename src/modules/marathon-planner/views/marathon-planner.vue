@@ -1,40 +1,109 @@
 <script lang="ts">
-import SearchBar from "./components/search-bar.vue";
+import {
+  VApp,
+  VCol,
+  VContainer,
+  VDivider,
+  VMain,
+  VRow,
+  VSheet,
+} from "vuetify/components";
+import {
+  SearchBar,
+  Availability,
+  AppHeader,
+  WordsStatistics,
+  Schedule,
+  InvalidVideos,
+} from "./components";
 
 import { useMarathonPlannerViewModel } from "../view-model";
 
 export default {
   name: "marathon-planner",
   components: {
+    VApp,
+    VMain,
+    VContainer,
+    VSheet,
+    VRow,
+    VCol,
+    AppHeader,
     SearchBar,
+    Availability,
+    VDivider,
+    WordsStatistics,
+    Schedule,
+    InvalidVideos,
   },
 
   setup() {
-    const { search, videos, loading } = useMarathonPlannerViewModel();
+    const {
+      videos,
+      loading,
+      mostUsedWordsInDescriptions,
+      mostUsedWordsInTItles,
+      userAvailability,
+      userWatchSchedule,
+      search,
+      saveAvailability,
+    } = useMarathonPlannerViewModel();
 
     return {
       videos,
-      search,
       loading,
+      mostUsedWordsInDescriptions,
+      mostUsedWordsInTItles,
+      userAvailability,
+      userWatchSchedule,
+      search,
+      saveAvailability,
     };
   },
 };
 </script>
 
 <template>
-  <div>
-    <div>
-      <h1>Marathon Planner</h1>
-      <SearchBar :search="search" />
-      <p v-if="loading">Loading</p>
+  <v-app>
+    <v-main class="bg-grey-lighten-5">
+      <v-container class="px-10">
+        <AppHeader />
 
-      <p>Total videos: {{ videos.length }}</p>
+        <SearchBar :search="search" :loading="loading" />
 
-      <!-- <ul>
-        <li v-for="video in videos" :key="video.id">
-          {{ video.title }}
-        </li>
-      </ul> -->
-    </div>
-  </div>
+        <Availability
+          :saveAvailability="saveAvailability"
+          :availability="userAvailability"
+        />
+
+        <v-row v-if="videos.length > 0">
+          <v-col>
+            <WordsStatistics
+              title="Top 5 Most Used Words in Titles"
+              :words="mostUsedWordsInTItles"
+            />
+          </v-col>
+
+          <v-col>
+            <WordsStatistics
+              title="Top 5 Most Used Words in Descriptions"
+              :words="mostUsedWordsInDescriptions"
+            />
+          </v-col>
+        </v-row>
+
+        <Schedule
+          v-if="userWatchSchedule"
+          :userWatchSchedule="userWatchSchedule"
+          :loading="loading"
+        />
+
+        <InvalidVideos
+          v-if="userWatchSchedule"
+          :userWatchSchedule="userWatchSchedule"
+          :loading="loading"
+        />
+      </v-container>
+    </v-main>
+  </v-app>
 </template>

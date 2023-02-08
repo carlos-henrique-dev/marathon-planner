@@ -1,4 +1,10 @@
 import { createApp } from "vue";
 import { MarathonPlanner } from "./modules";
+import { createVuetify } from "vuetify";
 
-createApp(MarathonPlanner).mount("#app");
+import "vuetify/styles";
+import "@/styles/index.css";
+
+const vuetify = createVuetify();
+
+createApp(MarathonPlanner).use(vuetify).mount("#app");
