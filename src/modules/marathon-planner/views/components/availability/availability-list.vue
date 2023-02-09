@@ -44,24 +44,26 @@ export default {
 </script>
 
 <template>
-  <v-sheet class="pa-6 mt-1" rounded="lg">
+  <v-sheet class="pa-1 mt-1" rounded="lg">
     <v-row no-gutters>
       <v-col>
         <h2 class="text-subtitle-1">Your current availability:</h2>
 
-        <v-timeline direction="horizontal" side="end">
-          <v-timeline-item
+        <v-row class="ma-0 pa-0 align-center justify-start">
+          <v-col
             v-for="(day, index) in availabilityList"
             :key="index"
-            hide-dot
+            xs="5"
+            sm="5"
+            md="1"
+            xl="1"
+            lg="1"
+            class="ma-2 pa-2 elevation-1 rounded-lg"
           >
-            <template v-slot:opposite>
-              <span class="text-subtitle-1">{{ day.day }}</span>
-            </template>
-
-            <span class="text-subtitle-2">{{ day.minutes }}</span>
-          </v-timeline-item>
-        </v-timeline>
+            <p class="text-subtitle-2">{{ day.day }}</p>
+            <p class="text-body-2 text-grey">{{ day.minutes }}</p>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-sheet>

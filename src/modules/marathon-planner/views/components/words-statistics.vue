@@ -29,9 +29,9 @@ export default {
     VProgressCircular,
     VList,
     VListItem,
-	VCardSubtitle,
-	VListItemTitle,
-	VListItemSubtitle,
+    VCardSubtitle,
+    VListItemTitle,
+    VListItemSubtitle,
   },
   props: {
     title: {
@@ -90,7 +90,7 @@ export default {
             </v-list-item-title>
           </v-col>
 
-          <v-col cols="3">
+          <v-col xs="4" sm="4" md="3" xl="3" lg="3">
             <v-list-item-subtitle>
               {{ word.count }} times
             </v-list-item-subtitle>

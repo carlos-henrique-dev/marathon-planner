@@ -76,6 +76,7 @@ export default {
             color="red-lighten-3"
             title="No videos for this day."
             text="There's no videos to be watched on this day"
+			max-width="200"
           />
         </v-row>
 
