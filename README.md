@@ -2,6 +2,8 @@
 
 This is an application built in VueJS to search YouTube videos and organize a watching schedule.
 
+[Check it online](https://marathon-planner.vercel.app/)
+
 ## Stack
 
 - Vue 3
