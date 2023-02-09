@@ -129,7 +129,7 @@ export function mountSchedule({ availability, videos }: Params) {
     const daysWithVideos = scheduledDays.filter(
       ([, value]) => value.length !== 0
     ).length;
-    console.log({ scheduledDays, daysWithVideos, daysPassed });
+
     if (daysWithVideos === 0) return 0;
 
     return daysPassed;

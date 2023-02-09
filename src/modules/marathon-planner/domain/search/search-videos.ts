@@ -3,15 +3,20 @@ import { IApiVideoSearchResponse, IHttpClient } from "@/interfaces";
 interface Params {
   httpClient: IHttpClient;
   query: string;
+  requestLimit?: number;
 }
 
-export async function searchVideos({ httpClient, query }: Params) {
+export async function searchVideos({
+  httpClient,
+  query,
+  requestLimit = 4,
+}: Params) {
   let requests = 0;
   let pageToken: string | undefined = undefined;
   let apiResult: IApiVideoSearchResponse;
   let searchResults: IApiVideoSearchResponse = { items: [] };
 
-  while (requests < 4) {
+  while (requests < requestLimit) {
     apiResult = await httpClient.get<IApiVideoSearchResponse>("search", {
       params: {
         part: "snippet",

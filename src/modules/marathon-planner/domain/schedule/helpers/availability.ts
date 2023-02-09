@@ -38,7 +38,15 @@ export const getNearestAvailableDay = ({
   ] as keyof typeof availability;
   let closestWeekdayAvailability = availability[closestWeekdayIndex];
 
+  let loopCount = 0;
   while (videoDuration > closestWeekdayAvailability) {
+    console.log("cai aqui 2", {
+      closestWeekdayIndex,
+      closestWeekdayAvailability,
+      closestDayWithEnoughTime,
+      daysUntilNearestAvailableDay,
+    });
+
     closestDayWithEnoughTime =
       closestDayWithEnoughTime === 6 ? 0 : closestDayWithEnoughTime + 1;
     daysUntilNearestAvailableDay++;
@@ -55,8 +63,13 @@ export const getNearestAvailableDay = ({
 
       break;
     }
+
+    if (loopCount > 50) {
+      break;
+    }
   }
 
+  console.log({ daysUntilNearestAvailableDay, closestDayWithEnoughTime });
   return {
     daysUntilNearestAvailableDay,
     closestDayWithEnoughTime,
